@@ -1,1 +1,1 @@
-# MediAssist-RAG-AI-Agent-
+# MediAssist-RAG-AI-Agent
