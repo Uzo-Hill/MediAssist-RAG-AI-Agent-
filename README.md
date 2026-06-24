@@ -244,19 +244,19 @@ print(" Query engine reconfigured for faster response on CPU")
 
 ### Chat Interface
 
-<!-- INSERT STREAMLIT UI SCREENSHOT HERE -->
+*![AppUI](https://github.com/Uzo-Hill/MediAssist-RAG-AI-Agent-/blob/main/Project_Image/App_UI.PNG)*
 
 
-## 📊 Evaluation
+##  Evaluation
 
 The system successfully retrieves information from the healthcare document and generates context-grounded answers.
 
-### Example
+### Example:
 
 
-### Sample Questions and Answers
+#### Sample Questions and Answers
 
-<!-- INSERT STREAMLIT UI SCREENSHOT HERE -->
+*![QnA](https://github.com/Uzo-Hill/MediAssist-RAG-AI-Agent-/blob/main/Project_Image/QnA.PNG)*
 
 
 This demonstrates that the response was generated from retrieved document content rather than generic model knowledge.
