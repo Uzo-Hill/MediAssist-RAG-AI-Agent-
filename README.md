@@ -4,9 +4,6 @@ A Retrieval-Augmented Generation (RAG) AI assistant that answers health-related 
 
 The project combines **LlamaIndex**, **Ollama**, and **Vector Search** to deliver grounded and context-aware medical responses.
 
----
-## Primary Objectives
-To build, evaluate, and deploy a predictive model that accurately forecasts house prices per unit area using property characteristics, and to create a user-friendly web application for real-time predictions.
 
 ---
 
