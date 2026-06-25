@@ -4,6 +4,7 @@ A Retrieval-Augmented Generation (RAG) AI assistant that answers health-related 
 
 The project combines **LlamaIndex**, **Ollama**, and **Vector Search** to deliver grounded and context-aware medical responses.
 
+*![Intro_Image](https://github.com/Uzo-Hill/MediAssist-RAG-AI-Agent-/blob/main/Project_Image/RAG_Agent_Pipeline.jfif)*
 
 ---
 
