@@ -485,6 +485,16 @@ What is the exact global cost of diabetes-related healthcare annually?
 
 ---
 
+## Limitations and Honest Disclosures
+
+- **TPS is low** (1.27–1.34 tokens/sec) due to CPU-only inference with no GPU acceleration. This is an honest hardware constraint, not a software failure.
+- **Response times** (45–155 seconds) are longer than cloud-hosted systems. This is expected and inherent to running a quantised LLM on a 2-core CPU.
+- **Knowledge base is static.** Documents must be manually updated when medical guidelines change. A production system would require a document update pipeline.
+- **Not a medical device.** MediAssist is an information assistant. It is not a diagnostic tool and should not replace professional clinical judgment.
+- **English only.** The current version does not support African languages. This is identified as a future enhancement.
+
+---
+
 ## Key Learnings
 
 - Building a multi-document RAG system with LlamaIndex and local Ollama models
