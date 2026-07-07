@@ -1,37 +1,217 @@
-# MediAssist-RAG-AI-Agent
+# 🩺 MediAssist RAG AI Agent
 
-A Retrieval-Augmented Generation (RAG) AI assistant that answers health-related questions using information retrieved from a trusted medical document instead of relying solely on Large Language Model (LLM) knowledge.
+A fully local, offline-capable Retrieval-Augmented Generation (RAG) health assistant
+that answers questions about common African health conditions — grounded in a trusted
+medical knowledge base, not LLM memory.
 
-The project combines **LlamaIndex**, **Ollama**, and **Vector Search** to deliver grounded and context-aware medical responses.
 
 *![Intro_Image](https://github.com/Uzo-Hill/MediAssist-RAG-AI-Agent-/blob/main/Project_Image/RAG_Agent_Pipeline.jfif)*
 
 ---
 
-##  Project Overview
-MediAssist was built to demonstrate how Retrieval-Augmented Generation (RAG) can reduce hallucinations and improve answer reliability by retrieving information from a custom healthcare knowledge base before generating responses.
+## Overview
 
-### Key Features
-- Document-based question answering
-- Local LLM inference using Ollama
-- Vector search retrieval
-- Context-grounded responses
-- Fast and lightweight deployment
-- No paid API required
+MediAssist is a Retrieval-Augmented Generation (RAG) AI assistant that answers health-related questions by retrieving information from a curated medical knowledge
+base, not from the LLM's general training memory.
+
+Built and deployed in two phases:
+
+| Phase | Description |
+|---|---|
+| **Phase 1** | Single-document RAG prototype (diabetes only) in Jupyter Notebook |
+| **Phase 2** | Multi-document, six-condition knowledge base deployed as a full three-tier application (FastAPI + Streamlit), running entirely offline on CPU-only hardware |
+
+**ADTC 2026 Submission** - Africa Deep Tech Challenge, Laptop LLM Track, Healthcare & Medical domain.
 
 ---
 
 ##  Problem Statement
 
-Traditional LLMs may generate inaccurate or fabricated medical information.
+Access to reliable health information remains one of the most critical unmet needs across sub-Saharan Africa. Cloud-hosted medical AI tools require:
 
-MediAssist addresses this challenge by:
+- Internet connectivity
+- API fees per query
+- Stable electricity
 
-1. Retrieving relevant information from a medical document.
-2. Passing retrieved context to the LLM.
-3. Generating answers grounded in verified content.
+For a patient in Nigeria, a community health worker, or a student nurse in Africa, these are not minor frictions. They are blockers.
+
+MediAssist addresses this by:
+
+1. Running a full RAG pipeline entirely on a local CPU-only laptop
+2. Answering questions from a trusted medical knowledge base, not from hallucination
+3. Requiring zero internet at inference time — works fully offline once set up
+4. Costing nothing to run — no API fees, no subscriptions
 
 ---
+
+## Phase 2 Upgrade
+
+### What Changed — Phase 2 Upgrade
+
+The original Phase 1 prototype covered only diabetes and ran inside a Jupyter Notebook.
+Phase 2 made the following significant upgrades:
+
+### 1. Knowledge Base Expanded from 1 to 6 Conditions
+
+| Was (Phase 1) | Now (Phase 2) |
+|---|---|
+| Diabetes only | Diabetes, Malaria, Hypertension, Tuberculosis, Maternal Health, Typhoid Fever |
+| 1 document | 6 documents |
+| Single-condition RAG | Multi-condition African health assistant |
+
+### 2. Index Persistence
+
+The original in-memory index was lost every time the notebook restarted.
+Phase 2 persists the index to disk:
+
+```python
+# Save index to disk — survives restarts without rebuilding
+index.storage_context.persist(persist_dir="./mediassist_storage")
+
+# Load from disk on subsequent sessions — no reprocessing needed
+storage_context = StorageContext.from_defaults(persist_dir="./mediassist_storage")
+index = load_index_from_storage(storage_context)
+```
+
+### 3. Model Optimised for Speed
+
+Switched from `llama3.2` (2B) to `llama3.2:1b` (1B) after benchmarking:
+
+| Model | Raw Inference Time | Improvement |
+|---|---|---|
+| llama3.2 (2B) | 92.1 seconds | Baseline |
+| llama3.2:1b (1B) | 45.0 seconds | **2× faster** ✅ |
+
+### 4. Deployed as a Three-Tier Application
+
+| Layer | Technology | File |
+|---|---|---|
+| Chat Interface | Streamlit | `chat_app.py` |
+| Backend API | FastAPI + Uvicorn | `main.py` |
+| Knowledge Store | LlamaIndex disk persistence | `mediassist_storage/` |
+
+### 5. Chat Interface Redesigned
+
+- Subtitle updated to reflect all six conditions
+- Sidebar added with knowledge base info, model details, sample questions
+- Response time shown on every answer
+- Welcome message and medical disclaimer added
+- Full dark theme applied
+
+---
+
+## 📚 Knowledge Base
+
+Six conditions chosen for their high burden across sub-Saharan Africa:
+
+| # | Document | Condition | African Relevance |
+|---|---|---|---|
+| 1 | `diabetes_guide.txt` | Diabetes Mellitus | Fastest-growing NCD burden in Africa |
+| 2 | `malaria_guide.txt` | Malaria | Africa accounts for 94% of global cases |
+| 3 | `hypertension_guide.txt` | Hypertension | Affects ~130 million African adults |
+| 4 | `tuberculosis_guide.txt` | Tuberculosis | Africa carries 25% of global TB burden |
+| 5 | `maternal_health_guide.txt` | Maternal Health | 70% of global maternal deaths in Africa |
+| 6 | `typhoid_guide.txt` | Typhoid Fever | Endemic across West Africa including Nigeria |
+
+Each document covers: overview, types, symptoms, risk factors, diagnosis, treatment,
+prevention, African-specific statistics, and when to seek care.
+
+---
+
+## Solution Architecture
+
+```text
+┌─────────────────────────────────────┐
+│   Streamlit Chat Interface           │  ← chat_app.py
+│   http://localhost:8501              │  Browser-based Q&A
+└──────────────┬──────────────────────┘
+               │ HTTP POST /ask
+               ▼
+┌─────────────────────────────────────┐
+│   FastAPI Backend                    │  ← main.py
+│   http://127.0.0.1:8000             │  REST API layer
+└──────────────┬──────────────────────┘
+               │ loads persisted index
+               ▼
+┌─────────────────────────────────────┐
+│   LlamaIndex Vector Store            │  ← mediassist_storage/
+│   Disk-persisted embeddings          │  Survives restarts
+└──────────────┬──────────────────────┘
+               │ retrieves top-2 chunks
+               ▼
+┌─────────────────────────────────────┐
+│   Ollama Local Runtime               │
+│   LLaMA 3.2:1b + nomic-embed-text   │  100% offline
+└─────────────────────────────────────┘
+```
+
+---
+
+## 🔁 RAG Pipeline
+
+### 1. Document Loading
+
+All six health documents are loaded in a single call:
+
+```python
+documents = SimpleDirectoryReader(
+    input_files=[
+        "diabetes_guide.txt",
+        "malaria_guide.txt",
+        "hypertension_guide.txt",
+        "tuberculosis_guide.txt",
+        "maternal_health_guide.txt",
+        "typhoid_guide.txt"
+    ]
+).load_data()
+```
+
+### 2. Embedding Generation
+
+Each chunk is converted to a vector embedding using `nomic-embed-text` via Ollama:
+
+```python
+Settings.embed_model = OllamaEmbedding(
+    model_name="nomic-embed-text",
+    base_url="http://127.0.0.1:11434"
+)
+```
+
+### 3. Index Building and Persistence
+
+Built once, saved to disk, reloaded instantly on subsequent sessions:
+
+```python
+if os.path.exists("./mediassist_storage") and os.listdir("./mediassist_storage"):
+    storage_context = StorageContext.from_defaults(persist_dir="./mediassist_storage")
+    index = load_index_from_storage(storage_context)
+else:
+    index = VectorStoreIndex.from_documents(documents, show_progress=True)
+    index.storage_context.persist(persist_dir="./mediassist_storage")
+```
+
+### 4. Query Engine
+
+```python
+# top_k=2: retrieve 2 most relevant chunks per question
+# compact mode: single LLM call — faster on CPU-only hardware
+query_engine = index.as_query_engine(
+    similarity_top_k=2,
+    response_mode="compact"
+)
+```
+
+### 5. FastAPI Endpoint
+
+```python
+@app.post("/ask", response_model=AnswerResponse)
+def ask_question(request: QuestionRequest):
+    response = query_engine.query(request.question)
+    return AnswerResponse(answer=str(response))
+```
+
+
+
 
 ##  Solution Architecture
 
