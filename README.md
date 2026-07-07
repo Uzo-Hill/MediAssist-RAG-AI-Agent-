@@ -210,236 +210,246 @@ def ask_question(request: QuestionRequest):
     return AnswerResponse(answer=str(response))
 ```
 
+---
+
+## 🛠️ Tech Stack
+
+| Component | Technology | Version |
+|---|---|---|
+| Language | Python | 3.11+ |
+| RAG Framework | LlamaIndex | 0.14.x |
+| Language Model | LLaMA 3.2:1b via Ollama | 1B parameters |
+| Embedding Model | nomic-embed-text via Ollama | Latest |
+| Backend API | FastAPI + Uvicorn | 0.138.0 |
+| Chat Interface | Streamlit | Latest |
+| Index Storage | LlamaIndex disk persistence | Built-in |
+| Resource Monitoring | psutil | Latest |
 
 
+---
 
-##  Solution Architecture
+## 📂 Project Structure
 
 ```text
-Medical Document
-       │
-       ▼
-Document Loader
-       │
-       ▼
-Text Chunking
-       │
-       ▼
-Embedding Generation
-(nomic-embed-text)
-       │
-       ▼
-Vector Index
-(LlamaIndex)
-       │
-       ▼
-Retriever
-       │
-       ▼
-LLM (Llama 3.2)
-       │
-       ▼
-Grounded Response
-```
-
----
-
-##  RAG Pipeline
-
-### 1. Document Loading
-
-The healthcare reference document is loaded into the system using LlamaIndex.
-
-```python
-# Load the text file
-# SimpleDirectoryReader handles .txt files perfectly
-documents = SimpleDirectoryReader(
-    input_files=["diabetes_guide.txt"]
-).load_data()
-
-print(f" Document loaded! Total chunks: {len(documents)}")
-
-```
-
-### 2. Embedding Generation
-The project uses Ollama's `nomic-embed-text` model to convert document chunks into vector embeddings for semantic search.
-
-```python
-# Reconfigure with a longer timeout and fewer chunks per query
-Settings.llm = Ollama(
-    model="llama3.2",
-    base_url="http://127.0.0.1:11434",
-    request_timeout=900.0   # 15 minutes — safely covers slow CPU responses
-)
-
-Settings.embed_model = OllamaEmbedding(
-    model_name="nomic-embed-text",
-    base_url="http://127.0.0.1:11434"
-)
-
-print(" LLM reconfigured")
-
-```
-
-### 3. Vector Index Creation
-Embeddings are stored in a vector index for semantic retrieval.
-
-```python
-# This single line does three things automatically:
-# 1. Splits the text into chunks
-# 2. Converts each chunk into an embedding using nomic-embed-text
-# 3. Stores all embeddings in a local vector index for fast retrieval
-
-index = VectorStoreIndex.from_documents(
-    documents,
-    show_progress=True  # Shows a progress bar while building
-)
-
-print(" Vector index built successfully!")
-
-```
-
-### 4. Query Retrieval
-
-User questions are converted into embeddings and matched against relevant document chunks.
-
-### 5. Response Generation
-
-Retrieved context is sent to the LLM to generate grounded answers.
-
----
-
-##  Tech Stack
-
-| Component | Technology |
-|------------|------------|
-| Programming Language | Python |
-| RAG Framework | LlamaIndex |
-| LLM | Llama 3.2 |
-| Embedding Model | nomic-embed-text |
-| Model Serving | Ollama |
-| Vector Store | LlamaIndex Vector Index |
-| Frontend | Streamlit |
-| Backend API | FastAPI |
-
----
-
-##  Project Structure
-
-```text
-MediAssist/
+MediAssist_RAG/
 │
-├── diabetes_guide.txt
-├── main.py
-├── chat_app.py
-├── mediassist_storage/
-├── requirements.txt
+├── diabetes_guide.txt           # Knowledge document 1
+├── malaria_guide.txt            # Knowledge document 2
+├── hypertension_guide.txt       # Knowledge document 3
+├── tuberculosis_guide.txt       # Knowledge document 4
+├── maternal_health_guide.txt    # Knowledge document 5
+├── typhoid_guide.txt            # Knowledge document 6
+│
+├── mediassist_storage/          # Persisted vector index (auto-generated)
+│   ├── docstore.json
+│   ├── index_store.json
+│   └── vector_store.json
+│
+├── main.py                      # FastAPI backend
+├── chat_app.py                  # Streamlit chat interface
+├── MediAssist_Master.ipynb      # Master notebook (clean, ordered)
+├── REPORT.md                    # ADTC 2026 submission report
+├── requirements.txt             # Python dependencies
 └── README.md
 ```
+
 ---
 
-##  Installation
+## ⚙️ Installation
 
-### Clone Repository
+### Prerequisites
+
+- Python 3.11+
+- [Ollama](https://ollama.com/download) installed
+
+### 1. Clone the Repository
+
 ```bash
-git clone https://github.com/yourusername/MediAssist.git
-cd MediAssist
+git clone https://github.com/Uzo-Hill/MediAssist-RAG-AI-Agent-.git
+cd MediAssist-RAG-AI-Agent-
 ```
 
-### Install Dependencies
+### 2. Pull the Required Models
+
 ```bash
-pip install -r requirements.txt
-```
-### Install Required Models
-```bash
-ollama pull llama3.2
+ollama pull llama3.2:1b
 ollama pull nomic-embed-text
 ```
+
+### 3. Install Python Dependencies
+
+```bash
+pip install llama-index \
+            llama-index-llms-ollama \
+            llama-index-embeddings-ollama \
+            fastapi \
+            uvicorn \
+            streamlit \
+            requests \
+            nest_asyncio \
+            psutil
+```
+
+> ⚠️ **Windows users:** If you have multiple Python environments (e.g. Anaconda
+> and Miniconda), install dependencies into the **same environment** you will use
+> to run `uvicorn` and `streamlit` from the terminal.
+
 ---
 
-##  Running the Project
+## Running the Project
 
-### Start Ollama
+MediAssist requires **three components running simultaneously**,
+each in its own terminal window.
+
+### Step 1 — Start Ollama
 
 ```bash
 ollama serve
 ```
 
-### Start FastAPI Backend
+Confirm it is active: visit `http://localhost:11434` — should show `Ollama is running`
+
+### Step 2 — Start the FastAPI Backend (Terminal 1)
 
 ```bash
+cd MediAssist_RAG
 uvicorn main:app --reload
 ```
 
-### Start Streamlit Frontend
+Expected output:
+
+```
+Loading MediAssist index from disk...
+✅ Index loaded. MediAssist API is ready.
+INFO:     Uvicorn running on http://127.0.0.1:8000
+INFO:     Application startup complete.
+```
+
+
+
+### Step 3 — Start the App Locally or with Streamlit (Terminal 2)
 
 ```bash
-streamlit run chat_app.py
+(base) C:\Users\DELL>cd Desktop\MediAssist_RAG
+
+(base) C:\Users\DELL\Desktop\MediAssist_RAG>streamlit run chat_app.py
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501 
+  Network URL: http://192.168.0.187:8501
 ```
+
+Opens at `http://localhost:8501`
+
 ---
 
-##  Core Implementation
+## 💻 Core Implementation
 
 ### LLM Configuration
 
 ```python
-# Reconfigure with a longer timeout and fewer chunks per query
+# llama3.2:1b — 2x faster than llama3.2 (2B) on CPU-only hardware
 Settings.llm = Ollama(
-    model="llama3.2",
+    model="llama3.2:1b",
     base_url="http://127.0.0.1:11434",
-    request_timeout=900.0   # 15 minutes — safely covers slow CPU responses
+    request_timeout=300.0
 )
 
 Settings.embed_model = OllamaEmbedding(
     model_name="nomic-embed-text",
     base_url="http://127.0.0.1:11434"
 )
-
-print("✅ LLM reconfigured with extended timeout")
 ```
-### Embedding Configuration
+
+### FastAPI Backend (main.py)
+
 ```python
-from llama_index.embeddings.ollama import OllamaEmbedding
-from llama_index.core import Settings
+from fastapi import FastAPI
+from pydantic import BaseModel
+from llama_index.core import StorageContext, load_index_from_storage, Settings
 
-Settings.embed_model = OllamaEmbedding(
-    model_name="nomic-embed-text",
-    base_url="http://127.0.0.1:11434"
-)
-```
-### Query Engine
-```python
-query_engine = index.as_query_engine(
-    similarity_top_k=2,
-    response_mode="compact"   # Combines chunks into a single LLM call instead of multiple refine passes
-)
+app = FastAPI(title="MediAssist RAG API")
 
-print(" Query engine reconfigured for faster response on CPU")
+storage_context = StorageContext.from_defaults(persist_dir="./mediassist_storage")
+index = load_index_from_storage(storage_context)
+query_engine = index.as_query_engine(similarity_top_k=2, response_mode="compact")
+
+class QuestionRequest(BaseModel):
+    question: str
+
+class AnswerResponse(BaseModel):
+    answer: str
+
+@app.post("/ask", response_model=AnswerResponse)
+def ask_question(request: QuestionRequest):
+    response = query_engine.query(request.question)
+    return AnswerResponse(answer=str(response))
+
+@app.get("/")
+def health_check():
+    return {"status": "MediAssist API is running"}
 ```
+
 ---
 
-##  Application Demo
+## 📊 Benchmarks
+
+### Hardware Profile
+
+```
+CPU:    2 physical cores, 4 logical cores (Intel)
+RAM:    7.7 GB total
+GPU:    None — CPU-only inference
+OS:     Windows 10/11
+```
+
+### Model Speed Comparison
+
+| Model | Parameters | Raw Inference | Improvement |
+|---|---|---|---|
+| llama3.2 | 2B | 92.1 seconds | Baseline |
+| llama3.2:1b | 1B | 45.0 seconds | **2× faster** ✅ |
+
+### End-to-End RAG Response Times
+
+| Query | Response Time |
+|---|---|
+| What are the symptoms of malaria? | 103.8 seconds |
+| How is hypertension treated? | 91.6 seconds |
+| What danger signs occur during pregnancy? | 51.0 seconds |
+| How does tuberculosis spread? | 49.4 seconds |
+
+### Full System Benchmark
+
+| Metric | Constrained (0.9 GB free RAM) | Optimised (2.9 GB free RAM) |
+|---|---|---|
+| Response time | 155.5 seconds | 94.5 seconds |
+| Peak RAM | 7.56 GB | 7.51 GB |
+| Model RAM footprint | 0.82 GB | 2.69 GB |
+| Average CPU | 79.8% | 28.5% |
+| Estimated TPS | 1.34 | 1.27 |
+| Performance score | 9.0 / 100 | 8.5 / 100 |
+| Efficiency score | 88.3 / 100 | 61.5 / 100 |
+
+**Key finding:** When RAM is constrained, Ollama uses a smaller footprint (0.82 GB) but runs slower. When RAM is available, it allocates more aggressively (2.69 GB) for faster inference. This adaptive behaviour is characteristic of running LLMs on constrained hardware where background processes compete for memory.
+
+---
+
+## 📱 Application Demo
 
 ### Chat Interface
 
-*![AppUI](https://github.com/Uzo-Hill/MediAssist-RAG-AI-Agent-/blob/main/Project_Image/App_UI.PNG)*
+*![streamlit_Interface]()*
 
 
-##  Evaluation
 
-The system successfully retrieves information from the healthcare document and generates context-grounded answers.
+### Sample Question and Answer
 
-### Example:
+*![Prompt_Example]()*
 
+##  Solution Architecture
 
-#### Sample Questions and Answers
-
-*![QnA](https://github.com/Uzo-Hill/MediAssist-RAG-AI-Agent-/blob/main/Project_Image/QnA.PNG)*
-
-
-This demonstrates that the response was generated from retrieved document content rather than generic model knowledge.
-
----
 
 ##  Key Learnings
 
