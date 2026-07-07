@@ -440,35 +440,80 @@ OS:     Windows 10/11
 
 ### Chat Interface
 
-*![streamlit_Interface]()*
+*![streamlit_Interface](https://github.com/Uzo-Hill/MediAssist-RAG-AI-Agent-/blob/main/Project_Image/Chat_Interface.PNG)*
 
 
 
 ### Sample Question and Answer
 
-*![Prompt_Example]()*
+*![Prompt_Example](https://github.com/Uzo-Hill/MediAssist-RAG-AI-Agent-/blob/main/Project_Image/chat_Examp.PNG)*
 
-##  Solution Architecture
-
-
-##  Key Learnings
-
-- Building Retrieval-Augmented Generation systems
-- Vector embeddings and semantic search
-- LlamaIndex document indexing
-- Local LLM deployment with Ollama
-- Grounding AI responses using external knowledge
 
 ---
 
-##  Future Improvements
+## Evaluation
 
-- Add source citations
-- Support multiple medical documents
-- Introduce conversation memory
-- Deploy to cloud infrastructure
-- Add PDF document upload support
-- Implement confidence scoring
+### Domain Coverage Test
+
+| Domain | Sample Query | Result |
+|---|---|---|
+| Malaria | What are the symptoms of malaria? | ✅ Correct |
+| Hypertension | How is high blood pressure treated? | ✅ Correct |
+| Maternal Health | What danger signs occur during pregnancy? | ✅ Correct |
+| Tuberculosis | How does tuberculosis spread? | ✅ Correct |
+| Diabetes | What are the risk factors for diabetes? | ✅ Correct |
+| Typhoid | How can typhoid fever be prevented? | ✅ Correct |
+
+### Hallucination / Retrieval Validation Test
+
+To confirm MediAssist retrieves from the document — not from LLM general knowledge —
+a fact-verification test was run using a specific statistic that only exists in the
+custom knowledge base:
+
+**Query:**
+```
+What is the exact global cost of diabetes-related healthcare annually?
+```
+
+**Expected:** `$760 billion annually` *(from diabetes_guide.txt only)*
+
+**MediAssist answer:**
+
+*![Prompt_Example](https://github.com/Uzo-Hill/MediAssist-RAG-AI-Agent-/blob/main/Project_Image/RAG_Confirmation.PNG)*
+
+**Exact match confirmed** — RAG retrieval is functioning correctly.
+
+---
+
+## Key Learnings
+
+- Building a multi-document RAG system with LlamaIndex and local Ollama models
+- Diagnosing real deployment challenges — cross-environment Python dependencies,
+  CPU inference timeout tuning, and Windows DLL compatibility issues
+- Performance trade-off between model size and response quality on constrained
+  hardware (1B vs 2B parameters)
+- How Ollama adaptively manages memory — allocating more aggressively when RAM
+  is available, conserving when constrained
+- Separating a notebook prototype into a production-style three-tier application
+  (persistence layer → API → interface)
+- Engineering judgment to pivot from ChromaDB to LlamaIndex disk persistence
+  when a dependency fails — choosing simplicity over convention
+
+---
+
+## Future Improvements
+
+- [ ] African language support — Yoruba, Igbo, Hausa, Swahili, Pidgin English
+- [ ] Expand knowledge base to additional conditions (HIV/AIDS, sickle cell, cholera)
+- [ ] Add source citations to every answer for clinical traceability
+- [ ] Implement confidence thresholds — refuse when retrieval score is too low
+- [ ] WhatsApp Business API integration for community health worker deployment
+- [ ] Quantisation experiments (Q2, Q3) to improve TPS on constrained hardware
+- [ ] Automatic knowledge base update pipeline from trusted medical sources
+- [ ] Docker containerisation for reproducible deployment
+- [ ] Add PDF document upload support
+
+
 ---
 
 ## ⚠️ Disclaimer
