@@ -298,6 +298,7 @@ uvicorn main:app --reload
 Wait for:
 
 ✅ Index loaded. MediAssist API is ready.
+
 INFO: Uvicorn running on http://127.0.0.1:8000
 
 
@@ -309,6 +310,7 @@ streamlit run chat_app.py
 ### 6. Open the chat
 
 Chat UI : http://localhost:8501
+
 API docs : http://127.0.0.1:8000/docs
 
 
