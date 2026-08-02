@@ -2,16 +2,11 @@ llama-index
 llama-index-core
 llama-index-llms-ollama
 llama-index-embeddings-ollama
-
 ollama
-
 fastapi
 uvicorn
-
 streamlit
-
 requests
-
 nest_asyncio
-
+psutil
 pypdf
