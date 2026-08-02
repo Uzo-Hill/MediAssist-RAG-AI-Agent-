@@ -257,90 +257,63 @@ MediAssist_RAG/
 
 ## ⚙️ Installation
 
-### Prerequisites
 
+## Quick Start
+
+### Prerequisites
 - Python 3.11+
 - [Ollama](https://ollama.com/download) installed
 
-### 1. Clone the Repository
-
+### 1. Clone the repository
 ```bash
 git clone https://github.com/Uzo-Hill/MediAssist-RAG-AI-Agent-.git
 cd MediAssist-RAG-AI-Agent-
 ```
 
-### 2. Pull the Required Models
-
+### 2. Install dependencies
 ```bash
-ollama pull llama3.2:1b
-ollama pull nomic-embed-text
+pip install -r requirements.txt
 ```
 
-### 3. Install Python Dependencies
-
-```bash
-pip install llama-index \
-            llama-index-llms-ollama \
-            llama-index-embeddings-ollama \
-            fastapi \
-            uvicorn \
-            streamlit \
-            requests \
-            nest_asyncio \
-            psutil
-```
-
-> ⚠️ **Windows users:** If you have multiple Python environments (e.g. Anaconda
-> and Miniconda), install dependencies into the **same environment** you will use
-> to run `uvicorn` and `streamlit` from the terminal.
-
----
-
-## Running the Project
-
-MediAssist requires **three components running simultaneously**,
-each in its own terminal window.
-
-### Step 1 — Start Ollama
-
+### 3. Start Ollama
 ```bash
 ollama serve
 ```
 
-Confirm it is active: visit `http://localhost:11434` — should show `Ollama is running`
-
-### Step 2 — Start the FastAPI Backend (Terminal 1)
-
+### 4. Run setup script (pulls models + builds index if needed)
 ```bash
-cd MediAssist_RAG
+python setup.py
+```
+
+> If `mediassist_storage/` is already in the repo, setup will detect it
+> and skip the index rebuild — getting you running faster.
+
+### 5. Start the application
+
+**Terminal 1 — FastAPI backend:**
+```bash
 uvicorn main:app --reload
 ```
 
-Expected output:
+Wait for:
 
-```
-Loading MediAssist index from disk...
 ✅ Index loaded. MediAssist API is ready.
-INFO:     Uvicorn running on http://127.0.0.1:8000
-INFO:     Application startup complete.
-```
+INFO: Uvicorn running on http://127.0.0.1:8000
 
 
-
-### Step 3 — Start the App Locally or with Streamlit (Terminal 2)
-
+**Terminal 2 — Streamlit chat interface:**
 ```bash
-(base) C:\Users\DELL>cd Desktop\MediAssist_RAG
-
-(base) C:\Users\DELL\Desktop\MediAssist_RAG>streamlit run chat_app.py
-
-  You can now view your Streamlit app in your browser.
-
-  Local URL: http://localhost:8501 
-  Network URL: http://192.168.0.187:8501
+streamlit run chat_app.py
 ```
 
-Opens at `http://localhost:8501`
+### 6. Open the chat
+
+Chat UI : http://localhost:8501
+API docs : http://127.0.0.1:8000/docs
+
+
+> **All inference runs fully offline.** No internet required after setup.
+> No API fees. No cloud dependency.
 
 ---
 
