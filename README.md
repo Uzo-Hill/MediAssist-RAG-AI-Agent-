@@ -1,7 +1,6 @@
 # 🩺 MediAssist RAG AI Agent
 
-A fully local, offline-capable Retrieval-Augmented Generation (RAG) health assistant
-that answers questions about common African health conditions — grounded in a trusted
+A fully local, offline-capable Retrieval-Augmented Generation (RAG) health assistant that answers questions about common African health conditions; grounded in a trusted
 medical knowledge base, not LLM memory.
 
 
