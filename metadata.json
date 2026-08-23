@@ -1,0 +1,38 @@
+{
+  "submission_id": "mediassist-rag-health-assistant",
+  "team_name": "Hillary C. Uzoh",
+  "project_name": "MediAssist - Local RAG Health Assistant for Africa",
+  "domain": "healthcare_medical",
+  "model": {
+    "name": "llama3.2:1b",
+    "parameters": "1B",
+    "quantization": "Q4_K_M",
+    "format": "gguf",
+    "source": "ollama"
+  },
+  "hardware_profile": {
+    "cpu_cores_physical": 2,
+    "cpu_cores_logical": 4,
+    "ram_gb": 7.7,
+    "gpu": "none",
+    "os": "Windows 11"
+  },
+  "test_prompts": [
+    "What are the symptoms of malaria and when should a patient seek immediate medical care?",
+    "What are the danger signs during pregnancy that require immediate medical attention?"
+  ],
+  "scores": {
+    "sperf": 9,
+    "seff": 88
+  },
+  "stack": {
+    "rag_framework": "LlamaIndex",
+    "embedding_model": "nomic-embed-text",
+    "backend": "FastAPI",
+    "frontend": "Streamlit",
+    "vector_store": "LlamaIndex disk persistence"
+  },
+  "offline": true,
+  "no_paid_apis": true,
+  "repo": "https://github.com/Uzo-Hill/MediAssist-RAG-AI-Agent-"
+}
