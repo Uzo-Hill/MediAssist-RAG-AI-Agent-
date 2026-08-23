@@ -99,7 +99,7 @@ Switched from `llama3.2` (2B) to `llama3.2:1b` (1B) after benchmarking:
 
 ---
 
-## 📚 Knowledge Base
+## Knowledge Base
 
 Six conditions chosen for their high burden across sub-Saharan Africa:
 
@@ -211,7 +211,7 @@ def ask_question(request: QuestionRequest):
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Component | Technology | Version |
 |---|---|---|
@@ -227,7 +227,7 @@ def ask_question(request: QuestionRequest):
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 MediAssist_RAG/
@@ -254,7 +254,7 @@ MediAssist_RAG/
 
 ---
 
-## ⚙️ Installation
+## Installation
 
 
 ## Quick Start
@@ -367,13 +367,13 @@ def health_check():
 
 ---
 
-## 📊 Benchmarks
+## Benchmarks
 
 ### Hardware Profile
 
 ```
 CPU:    2 physical cores, 4 logical cores (Intel)
-RAM:    7.7 GB total
+RAM:    8 GB total
 GPU:    None — CPU-only inference
 OS:     Windows 10/11
 ```
