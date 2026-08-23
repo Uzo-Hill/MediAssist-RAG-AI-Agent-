@@ -1,0 +1,24 @@
+# ADTC required — exclude model files
+*.gguf
+model/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Profiler output
+submission.json
+audit.json
+verdict.json
