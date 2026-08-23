@@ -1,0 +1,61 @@
+
+MALARIA: A COMPREHENSIVE MEDICAL GUIDE
+
+1. OVERVIEW
+Malaria is a life-threatening disease caused by Plasmodium parasites transmitted through
+the bites of infected female Anopheles mosquitoes. Africa accounts for over 90% of global
+malaria deaths. Children under five and pregnant women are most vulnerable.
+
+2. TYPES
+Plasmodium falciparum: Most deadly, responsible for majority of African malaria deaths.
+Plasmodium vivax: Less deadly but causes relapses months or years after initial infection.
+Plasmodium malariae: Milder form but can persist for decades if untreated.
+Plasmodium ovale: Rare, found mainly in West Africa.
+
+3. SYMPTOMS
+Early symptoms (10-15 days after bite):
+- Fever and chills (cyclical, every 48-72 hours)
+- Headache and body aches
+- Nausea and vomiting
+- Fatigue and weakness
+- Sweating followed by return to normal temperature
+
+Severe malaria (falciparum):
+- Extreme weakness, inability to sit or walk
+- Impaired consciousness or coma (cerebral malaria)
+- Seizures
+- Respiratory distress
+- Jaundice (yellowing of skin and eyes)
+- Dark or black urine (blackwater fever)
+
+4. DIAGNOSIS
+- Rapid Diagnostic Tests (RDTs): Detect malaria antigens within 15 minutes
+- Microscopy: Blood smear examination — gold standard
+- GeneXpert: Detects TB DNA and rifampicin resistance within 2 hours
+- PCR Testing: Highly sensitive molecular test
+
+5. TREATMENT
+Uncomplicated malaria: Artemisinin-based Combination Therapies (ACTs) — 3 day course
+Severe malaria: IV/IM Artesunate — requires hospitalization
+Plasmodium vivax: Chloroquine plus Primaquine (G6PD testing required first)
+
+6. PREVENTION
+- Insecticide-Treated Bed Nets (ITNs): Sleep under nets every night
+- Indoor Residual Spraying (IRS): Insecticide on walls kills resting mosquitoes
+- Seasonal Malaria Chemoprevention (SMC) for children
+- Intermittent Preventive Treatment in Pregnancy (IPTp)
+- RTS,S/AS01 (Mosquirix) and R21/Matrix-M vaccines approved by WHO
+- Eliminate standing water where mosquitoes breed
+
+7. GLOBAL STATISTICS
+- 249 million malaria cases recorded globally in 2022 (WHO)
+- Africa accounts for 94% of cases and 95% of deaths
+- Children under 5 account for 80% of malaria deaths in Africa
+- Nigeria, DRC, Uganda, Mozambique account for over 50% of global cases
+- 608,000 deaths from malaria in 2022
+
+8. WHEN TO SEEK CARE
+- Fever above 38.5°C especially after being in a malaria area
+- Fever with chills, headache, and body aches in a child under five
+- Any symptoms of severe malaria listed above
+Malaria can become life-threatening within hours — do not wait.

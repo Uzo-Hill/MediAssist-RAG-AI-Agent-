@@ -1,0 +1,64 @@
+
+TYPHOID FEVER: A COMPREHENSIVE MEDICAL GUIDE
+
+1. OVERVIEW
+Typhoid fever is caused by Salmonella typhi and spreads through contaminated food and water.
+It is endemic across West Africa, including Nigeria, where inadequate water supply and
+sanitation create widespread transmission. An estimated 11-21 million cases occur globally
+each year, causing 128,000-161,000 deaths.
+
+2. HOW IT SPREADS
+- Drinking water contaminated with Salmonella typhi
+- Eating food handled by infected person who did not wash hands
+- Eating raw fruits or vegetables washed with contaminated water
+- Eating shellfish from contaminated water
+Carriers: Some people carry bacteria without symptoms and can spread typhoid to others.
+
+3. SYMPTOMS
+Week 1: Gradually rising fever (39-40°C), headache, weakness, dry cough, abdominal pain
+Week 2: Sustained high fever, slow heartbeat despite fever, rose spots on abdomen,
+enlarged spleen and liver, abdominal distension, diarrhoea or constipation
+Week 3 (if untreated): Intestinal perforation, peritonitis, severe bleeding, delirium
+
+4. DIAGNOSIS
+- Blood Culture: Gold standard, most effective in first week
+- Widal Test: Widely used in Africa but has high false positive rate
+- Typhidot/Tubex Test: Rapid tests increasingly available
+- Stool and Urine Culture: Useful in later stages
+
+5. TREATMENT
+- Third-generation Cephalosporins (Ceftriaxone, Cefixime): Current first-line
+- Azithromycin: Effective especially for drug-resistant cases
+- Fluoroquinolones: Widespread resistance now limits use
+- Supportive care: Fluids, paracetamol for fever, rest, nutrition
+- Surgery: Required for intestinal perforation
+
+6. COMPLICATIONS
+- Intestinal perforation (surgical emergency, up to 3% of cases)
+- Intestinal bleeding
+- Encephalopathy (brain dysfunction)
+- Myocarditis (heart muscle inflammation)
+- Relapse in 5-10% of patients after completing antibiotics
+
+7. PREVENTION
+- Safe water: Drink only boiled, filtered, or bottled water
+- Food safety: Eat only thoroughly cooked food served hot
+- Hand hygiene: Wash hands before eating and after toilet
+- Sanitation: Proper sewage disposal infrastructure
+- Vaccination:
+  Vi polysaccharide vaccine (Typhim Vi): Single injection, 2-3 years protection
+  Ty21a oral vaccine: 3-4 capsules on alternate days
+  Typhoid Conjugate Vaccine (TCV): WHO recommended for children from 6 months
+
+8. TYPHOID IN NIGERIA AND WEST AFRICA
+- Nigeria has one of the highest typhoid burdens in Africa
+- Contaminated water affects over 60% of the population
+- Self-medication contributes significantly to drug resistance
+- WHO recommends TCV introduction into routine immunization programs
+
+9. WHEN TO SEEK CARE
+- Fever lasting more than 3 days with headache and abdominal pain
+- Rose spots on the abdomen
+- Severe abdominal pain (possible perforation — emergency)
+- Return of fever after appearing to improve
+Do not self-medicate — this causes drug resistance.

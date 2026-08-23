@@ -1,0 +1,74 @@
+
+TUBERCULOSIS (TB): A COMPREHENSIVE MEDICAL GUIDE
+
+1. OVERVIEW
+Tuberculosis is caused by Mycobacterium tuberculosis, primarily affecting the lungs.
+It spreads through the air when an infected person coughs, sneezes, or speaks.
+Africa carries approximately 25% of the global TB burden. Nigeria, South Africa,
+and DR Congo are among the highest-burden countries.
+
+2. TYPES
+Latent TB: Bacteria present but inactive. No symptoms, not contagious.
+Active TB: Bacteria active, causing illness. Infectious and can spread to others.
+Pulmonary TB: Affects lungs. Most common and most contagious form.
+Extrapulmonary TB: Affects lymph nodes, bones, kidneys, brain, or heart lining.
+MDR-TB: Resistant to Isoniazid and Rifampicin. Harder to treat.
+
+3. SYMPTOMS
+Pulmonary TB:
+- Persistent cough lasting 2 weeks or more, often with blood-stained sputum
+- Chest pain and difficulty breathing
+- Fever especially in evenings
+- Night sweats
+- Unexplained weight loss and loss of appetite
+- Extreme fatigue
+
+Extrapulmonary symptoms vary by organ:
+- TB lymphadenitis: Swollen neck lymph nodes
+- TB meningitis: Severe headache, stiff neck, confusion
+- Skeletal TB: Back pain, joint swelling
+
+4. RISK FACTORS
+- HIV infection (18x higher risk)
+- Close contact with active TB case
+- Overcrowded, poorly ventilated conditions
+- Malnutrition and poverty
+- Diabetes mellitus
+- Smoking and excessive alcohol
+
+5. DIAGNOSIS
+- Sputum Smear Microscopy: Quick, widely available in Africa
+- GeneXpert/Xpert MTB/RIF: Detects TB and rifampicin resistance in 2 hours
+- Chest X-ray: Shows characteristic TB lung patterns
+- Culture: Most sensitive but takes 4-6 weeks
+
+6. TREATMENT
+Standard 6-month course:
+- Intensive Phase (2 months): Isoniazid + Rifampicin + Pyrazinamide + Ethambutol
+- Continuation Phase (4 months): Isoniazid + Rifampicin
+Treatment is free in most African countries through national TB programs.
+
+MDR-TB: 9-18 months with Bedaquiline, Linezolid, Levofloxacin.
+Directly Observed Therapy (DOT): Healthcare worker watches each dose.
+
+7. TB AND HIV
+- Sub-Saharan Africa has highest TB-HIV co-infection burden globally
+- All TB patients should be tested for HIV and vice versa
+- TB is the leading cause of death among people living with HIV in Africa
+
+8. PREVENTION
+- BCG vaccination at birth (protects against severe childhood TB)
+- TB Preventive Therapy (TPT): Isoniazid for 6 months for high-risk groups
+- Improve ventilation in homes, schools, and health facilities
+- Early diagnosis and treatment of active cases
+
+9. GLOBAL STATISTICS
+- 10.6 million TB cases globally in 2022 (WHO)
+- 1.3 million deaths from TB in 2022
+- Africa accounts for 23% of cases and 31% of deaths
+
+10. WHEN TO SEEK CARE
+- Cough lasting 2 weeks or more, especially with blood in sputum
+- Unexplained weight loss with fever and night sweats
+- Known contact with a TB patient
+- HIV-positive individuals should screen for TB at every healthcare visit
